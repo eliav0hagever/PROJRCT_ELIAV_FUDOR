@@ -60,6 +60,7 @@ def draw_comment_text_box():
 
 # Get the comment that the user typed will using Nitzagram and translate it
 # to string
+
 def read_comment_from_user():
     """
     Read the comment the user type.
@@ -72,6 +73,7 @@ def read_comment_from_user():
     draw_comment_text_box()
     while not pressed_enter:
         # get the string for comment
+        text = input("enter text")
         for event in pygame.event.get():
             if event.type == pygame.KEYDOWN:
                 draw_comment_text_box()

@@ -8,7 +8,13 @@ class Post:
     """
     A class used to represent post on Nitzagram
     """
-    def __init__(self): #TODO: add parameters
+    def __init__(self,descprition,user_name,location): #TODO: add parameters
+        self.descprition = descprition
+        self.user_name = user_name
+        self.location = location
+        self.comments = []
+        self.like_counter = 0
+        self.comments_display_index = 0
         #TODO: write me!
         pass
 
@@ -20,10 +26,14 @@ class Post:
         :return: None
         """
         # TODO: write me!
+        img = pygame.image.load() #לשים פה את התמונה
+        img = pygame.transform.scale(img,(POST_WIDTH,POST_HEIGHT))
+        screen.blit(img,(POST_X_POS,POST_Y_POS))
+
         pass
 
 
-    def display_comments(self):
+    def display_comments(self,comments):
         """
         Display comments on post. In case there are more than 4
         comments, show only 4 comments chosen by reset_comments_display_index
