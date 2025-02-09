@@ -15,8 +15,15 @@ class Post:
         self.comments = []
         self.like_counter = 0
         self.comments_display_index = 0
-        #TODO: write me!
-        pass
+
+    def add_like(self):
+        self.like_counter+=1
+
+    def add_comment(self,text):
+        comment = comment(text)
+        self.comments.append(comment)
+
+
 
     def display(self):
         """
@@ -26,10 +33,15 @@ class Post:
         :return: None
         """
         # TODO: write me!
-        img = pygame.image.load() #לשים פה את התמונה
-        img = pygame.transform.scale(img,(POST_WIDTH,POST_HEIGHT))
-        screen.blit(img,(POST_X_POS,POST_Y_POS))
+        font =pygame.font.SysFont('chalkduster.ttf',UI_FONT_SIZE )
 
+        username= font.render(self.user_name,True,BLACK)
+        screen.blit(username,(USER_NAME_X_POS,USER_NAME_Y_POS))
+
+        location = font.render(self.location,True,BLACK)
+        screen.blit(location,(LOCATION_TEXT_X_POS,LOCATION_TEXT_Y_POS))
+        like_count = font.render(str(self.like_counter),True,BLACK)
+        screen.blit(like_count,(LIKE_TEXT_X_POS,LIKE_TEXT_Y_POS))
         pass
 
 
