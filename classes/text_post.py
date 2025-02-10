@@ -2,6 +2,7 @@ import pygame
 
 from constants import *
 from helpers import screen
-from post import post
+import Post
 
-class text_post(post):
+class text_post(Post):
+    pass

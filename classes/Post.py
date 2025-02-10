@@ -19,7 +19,7 @@ class Post:
     def add_like(self):
         self.like_counter+=1
 
-    def add_comment(self,text):
+    def add_comment(self,text,comment):
         comment = comment(text)
         self.comments.append(comment)
 
@@ -73,3 +73,4 @@ class Post:
 
 
 
+main()

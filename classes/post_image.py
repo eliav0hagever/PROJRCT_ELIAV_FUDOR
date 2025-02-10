@@ -2,10 +2,10 @@ import pygame
 
 from constants import *
 from helpers import screen
-from post import post
+import Post
 
-class imagepost(post):
-    def __init__(self,username,location,description,image_path):
+class imagepost(Post):
+    def __init__(self,username, location,description,image_path):
         super().__init__(username,location,description)
         self.image= pygame.image.load(image_path)
         self.image = pygame.transform.scale(self.image,(POST_WIDTH,POST_HEIGHT))
