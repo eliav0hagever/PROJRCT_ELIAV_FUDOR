@@ -11,5 +11,5 @@ class Comment:
 
     def display(self, index):
         font = pygame.font.SysFont("Verdana", COMMENT_TEXT_SIZE)
-        text = font.render(self.comment, True, (0, 0, 0))
+        text = font.render(self.comment, True, BLACK)
         screen.blit(text, [FIRST_COMMENT_X_POS, FIRST_COMMENT_Y_POS + index * COMMENT_LINE_HEIGHT])
