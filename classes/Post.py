@@ -42,7 +42,7 @@ class Post:
         screen.blit(location,(LOCATION_TEXT_X_POS,LOCATION_TEXT_Y_POS))
         like_count = font.render(str(self.like_counter),True,BLACK)
         screen.blit(like_count,(LIKE_TEXT_X_POS,LIKE_TEXT_Y_POS))
-        pass
+
 
 
     def display_comments(self,comments):
@@ -73,4 +73,3 @@ class Post:
 
 
 
-main()

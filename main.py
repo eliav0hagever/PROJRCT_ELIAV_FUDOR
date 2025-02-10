@@ -1,6 +1,11 @@
 import pygame
-from helpers import screen
-from constants import WINDOW_WIDTH, WINDOW_HEIGHT, BLACK
+from helpers import *
+from constants import *
+from buttons import *
+from classes.Post import Post
+from classes.post_image import imagepost
+
+
 
 
 def main():
@@ -17,7 +22,9 @@ def main():
     background = pygame.transform.scale(background,
                                         (WINDOW_WIDTH, WINDOW_HEIGHT))
 
-    # TODO: add a post here
+    post1 = post_image.imagepost.imagepost("NoaK","Israel","hello im noa ", "Images/noa_kirel.jpg")
+    post2 = post_image.imagepost("Crisiano","Portugal","Im the best foball player","Images/ronaldo.jpg")
+
 
     running = True
     while running:
@@ -26,6 +33,14 @@ def main():
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 running = False
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                pos = pygame.mouse.get_pos()
+                if mouse_in_button(click_post_button,pos):
+                    post1.post_image.display()
+
+
+
+
 
         # Display the background, presented Image, likes, comments, tags and location(on the Image)
         screen.fill(BLACK)
@@ -38,6 +53,3 @@ def main():
         clock.tick(60)
     pygame.quit()
     quit()
-
-
-main()
