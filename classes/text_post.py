@@ -4,7 +4,7 @@ from constants import *
 from helpers import screen, from_text_to_array,center_text
 import Post
 
-class text_post(Post):
+class Text_post(Post):
     def __init__(self,username, location,description,text,text_color,backround_color):
         super().__init__(username, location, description)
         self.text_arry = from_text_to_array(text)

@@ -2,9 +2,10 @@ import pygame
 
 from constants import *
 from helpers import screen
-import Post
+from classes.Post import Post  # ✅ Правильный импорт
 
-class imagepost(Post):
+
+class Imagepost(Post):
     def __init__(self,username, location,description,image_path):
         super().__init__(username,location,description)
         self.image= pygame.image.load(image_path)
