@@ -6,6 +6,7 @@ from classes.Post import Post
 from classes.post_image import Imagepost
 from classes.text_post import Text_post
 from classes.Comment import *
+from classes.video_post import VideoPost
 
 
 def main():
@@ -20,11 +21,12 @@ def main():
     post2 = Imagepost("Crisiano", "Portugal", "Im the best football player", "Images/ronaldo.jpg")
     post3 = Text_post(" floyd", "o block", "special cat", "SHUMACHERRRRRR", BLACK, WHITE)
     post4=Imagepost("igal", "Israel", "hi nro ", "Images/ddd.jpg")
+    post5 = VideoPost("kanye","jerusalem","i spend for it 8kk$","Videos/kanyevideo.mp4")
 
     # Variable to keep track of the current post index
     current_post_index = 0
 
-    posts = [post1, post2,post3,post4]
+    posts = [post1, post2,post3,post4,post5]
 
     running = True
     while running:
