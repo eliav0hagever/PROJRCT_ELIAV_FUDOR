@@ -1,5 +1,4 @@
-import pygame
-import cv2
+
 import numpy as np
 
 from constants import *
@@ -18,7 +17,7 @@ class VideoPost(Post):
 
     def display(self):
         """
-        Show the video only if this post is active.
+        Show the video only if this post is active
         """
         if not self.is_playing:
             self.cap.set(cv2.CAP_PROP_POS_FRAMES, 0)  # Restart video
@@ -47,4 +46,4 @@ class VideoPost(Post):
             else:
                 self.cap.set(cv2.CAP_PROP_POS_FRAMES, 0)  # Restart if video ends
 
-        super().display()  # Show username, likes, etc.
+        super().display()  # Show username, likes and what ever

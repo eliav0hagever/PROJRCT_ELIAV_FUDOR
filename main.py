@@ -7,6 +7,7 @@ from classes.post_image import Imagepost
 from classes.text_post import Text_post
 from classes.Comment import *
 from classes.video_post import VideoPost
+import cv2
 
 
 def main():
@@ -20,16 +21,22 @@ def main():
     post1 = Imagepost("NoaK", "Israel", "hello im noa ", "Images/noa_kirel.jpg")
     post2 = Imagepost("Crisiano", "Portugal", "Im the best football player", "Images/ronaldo.jpg")
     post3 = Text_post(" floyd", "o block", "special cat", "SHUMACHERRRRRR", BLACK, WHITE)
-    post4=Imagepost("igal", "Israel", "hi nro ", "Images/ddd.jpg")
-    post5 = VideoPost("kanye","jerusalem","i spend for it 8kk$","Videos/kanyevideo.mp4")
+    post4 = Imagepost("igal", "Israel", "hi nro ", "Images/ddd.jpg")
+    post5 = VideoPost("kanye", "jerusalem", "i spend for it 8kk$", "Videos/kanyevideo.mp4")
+    post6 = VideoPost("ai", "usa", "cats yoooo", "Videos/cats.mp4")
+    post7 = Imagepost("KnayeFan", "Mexico", "he made graduation", "Images/kanyefan.jpg")
+
 
     # Variable to keep track of the current post index
     current_post_index = 0
 
-    posts = [post1, post2,post3,post4,post5]
+    posts = [post1, post2, post3, post4, post5,post6,post7]
+    f = pygame.font.SysFont("Tahoma", 11)
+    text = f.render("IF YOU DONT WANT WATCH THIS VIDEO PRESS 'S'", True, BLACK)
 
     running = True
     while running:
+
         screen.fill(BLACK)
         screen.blit(background, (0, 0))
 
@@ -53,6 +60,15 @@ def main():
                     if comment_text:
                         comment = Comment(comment_text)
                         posts[current_post_index].add_comment(comment)
+            elif event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_s:
+                    if isinstance(posts[current_post_index], VideoPost):
+                        # Stop video by releasing the capture and setting is_playing to False
+                        posts[current_post_index].cap.release()
+                        posts[current_post_index].is_playing = False
+        if isinstance(posts[current_post_index], VideoPost):
+            screen.blit(text, [80, 100])
+
         for index, comment in enumerate(posts[current_post_index].comments):
             comment.display(index)
 
