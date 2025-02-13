@@ -4,6 +4,7 @@ from constants import *
 from buttons import *
 from classes.Post import Post
 from classes.post_image import Imagepost
+from classes.text_post import Text_post
 from classes.Comment import *
 
 
@@ -17,11 +18,13 @@ def main():
 
     post1 = Imagepost("NoaK", "Israel", "hello im noa ", "Images/noa_kirel.jpg")
     post2 = Imagepost("Crisiano", "Portugal", "Im the best football player", "Images/ronaldo.jpg")
+    post3 = Text_post(" floyd", "o block", "special cat", "SHUMACHERRRRRR", BLACK, WHITE)
+    post4=Imagepost("igal", "Israel", "hi nro ", "Images/ddd.jpg")
 
     # Variable to keep track of the current post index
     current_post_index = 0
 
-    posts = [post1, post2]
+    posts = [post1, post2,post3,post4]
 
     running = True
     while running:
