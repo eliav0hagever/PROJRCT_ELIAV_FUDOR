@@ -50,48 +50,53 @@ def mouse_in_button(button, mouse_pos):
 
 
 def draw_comment_text_box():
-    pygame.draw.rect(screen, GREY, pygame.Rect(
-        VIEW_MORE_COMMENTS_X_POS, VIEW_MORE_COMMENTS_Y_POS, 300, 20))
-    pygame.draw.rect(screen, WHITE,
-                     pygame.Rect(VIEW_MORE_COMMENTS_X_POS + 1,
-                                 VIEW_MORE_COMMENTS_Y_POS + 1, 298, 18))
-    pygame.display.flip()
-
-
-# Get the comment that the user typed will using Nitzagram and translate it
-# to string
-
-def read_comment_from_user():
     """
-    Read the comment the user type.
-    :return: string
-        return typed comment
+
     """
-    pressed_enter = False
+    input_box = pygame.Rect(VIEW_MORE_COMMENTS_X_POS, VIEW_MORE_COMMENTS_Y_POS, 300, 30)
+
+    pygame.draw.rect(screen, GREY, input_box)
+    pygame.draw.rect(screen, WHITE, input_box.inflate(-2, -2))
+    pygame.draw.rect(screen, BLACK, input_box, 2)
+
+    pygame.display.update()
+
+    return input_box
+
+
+def read_comment_from_user(screen):
+    """
+
+    """
+    pygame.font.init()
+    font = pygame.font.SysFont('chalkduster.ttf', 24, bold=False)
+
+    input_box = draw_comment_text_box()
     new_comment = ""
-    # Draw the rectangle where the user can see the comment he typed
-    draw_comment_text_box()
-    while not pressed_enter:
-        # get the string for comment
-        text = input("enter text")
+    active = True
+
+    while active:
         for event in pygame.event.get():
-            if event.type == pygame.KEYDOWN:
-                draw_comment_text_box()
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                exit()
+            elif event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_RETURN:
-                    pressed_enter = True
-                # command to add len ! = 0
-                elif event.key == pygame.K_BACKSPACE \
-                        and not (len(new_comment) == 0):
+                    active = False
+                elif event.key == pygame.K_BACKSPACE:
                     new_comment = new_comment[:-1]
                 else:
                     new_comment += event.unicode
-                font2 = pygame.font.SysFont('chalkduster.ttf', UI_FONT_SIZE, bold=False)
-                img2 = font2.render(new_comment, True, (50, 50, 50))
-                screen.blit(img2,
-                            (VIEW_MORE_COMMENTS_X_POS + 1,
-                             VIEW_MORE_COMMENTS_Y_POS + 1))
-                pygame.display.update()
-    return new_comment
+
+        pygame.draw.rect(screen, WHITE, input_box.inflate(-2, -2))
+        pygame.draw.rect(screen, BLACK, input_box, 2)
+
+        input_text = font.render(new_comment, True, (0, 0, 0))
+        screen.blit(input_text, (input_box.x + 5, input_box.y + 5))
+
+        pygame.display.update()
+
+    return new_comment.strip() if new_comment.strip() else None
 
 
 def center_text(num_of_rows, text_to_display, row_number):

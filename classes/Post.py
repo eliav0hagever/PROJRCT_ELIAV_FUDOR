@@ -20,7 +20,7 @@ class Post:
         self.like_counter+=1
 
     def add_comment(self,text):
-        pass
+        self.comments.append(text)
 
 
 

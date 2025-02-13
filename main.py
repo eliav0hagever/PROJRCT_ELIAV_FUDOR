@@ -4,6 +4,8 @@ from constants import *
 from buttons import *
 from classes.Post import Post
 from classes.post_image import Imagepost
+from classes.Comment import *
+
 
 def main():
     pygame.init()
@@ -18,6 +20,7 @@ def main():
 
     # Variable to keep track of the current post index
     current_post_index = 0
+
     posts = [post1, post2]
 
     running = True
@@ -38,12 +41,22 @@ def main():
                     print("Button clicked")
                     # Move to the next post
                     current_post_index = (current_post_index + 1) % len(posts)
+                elif mouse_in_button(like_button, pos):
+                    posts[current_post_index].like_counter += 1
+                elif mouse_in_button(comment_button, pos):
+                    comment_text = read_comment_from_user(screen)
+                    if comment_text:
+                        comment = Comment(comment_text)
+                        posts[current_post_index].add_comment(comment)
+        for index, comment in enumerate(posts[current_post_index].comments):
+            comment.display(index)
 
         pygame.display.update()
         clock.tick(60)
 
     pygame.quit()
     quit()
+
 
 if __name__ == "__main__":
     main()
